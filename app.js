@@ -1,13 +1,18 @@
-// test
+import { TodoList } from "./components/Todolist.js";
+import { fetchJSON } from "./functions/api.js";
+import { createElement } from "./functions/dom.js";
 
-const année = prompt("Ajoutez votre année de naissance") * 1
-const n = 2023
-const age = n - année
+try  {
+    const todos = await fetchJSON('https://jsonplaceholder.typicode.com/todos?_limit=5')
+    const list = new TodoList(todos)
+    list.appendTo(document.querySelector('#todolist'))
 
-if (n >= année) {
-    console.log(`Vous avez ${age} ans cette année.`);
-} else {
-    console.log("Vous n'êtes pas encore née");
+} catch (e) {
+    const alertElement = createElement('div', {
+        class: 'alert alert-danger m-2',
+        role: 'alert'
+    })
+    alertElement.innerText = 'Impossible de charger les éléments'
+    document.body.prepend(alertElement)
+    console.error(e)
 }
-
-console.log("ça marche super bien")
