@@ -24,7 +24,7 @@ export class TodoList {
     /**
      * @param {HTMLElememt} element 
      */
-    appendTo(element) {
+    appendTo (element) {
         element.innerHTML = `
             <form class="d-flex pb-4">
                 <input required="" class="form-control" type="text" placeholder="Ajoutez une todo..." name="title"
@@ -136,9 +136,9 @@ class TodoListItem {
     /**
      * @returns {HTMLElement}
      */
-   get element () {
-    return this.#element
-   }
+    get element () {
+        return this.#element
+    }
 
     /**
      * @param {PointEvent} e 
